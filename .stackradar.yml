@@ -1,0 +1,20 @@
+version: 1
+
+automerge:
+  minimum_score: 80
+  soak_seconds: 0
+
+changes:
+  test_edits: score
+
+ci:
+  workflow: stackradar-demo-ci.yml
+  required_check: StackRadar Demo CI
+
+verification:
+  environment: {}
+  setup: []
+  commands:
+    - [composer, validate, --no-check-publish, --no-interaction]
+    - [vendor/bin/phpstan]
+    - [vendor/bin/phpunit, tests/unit]
